@@ -7,7 +7,7 @@ class CreateBoardgames < ActiveRecord::Migration[6.1]
       t.string :description
       t.string :genre
       t.string :est_time
-      t.belongs_to :user, null: false, foreign_key: true
+      t.references :user, null: false, foreign_key: true
       t.boolean :can_borrow
       t.boolean :available
 
