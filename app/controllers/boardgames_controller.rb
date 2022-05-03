@@ -1,40 +1,37 @@
 class BoardgamesController < ApplicationController
 
     def index
-        render json: User.all, status: :ok
+        render json: Boardgame.all, status: :ok
     end
 
     def show
-        user = User.find(params[:id])
-        render json: user, status: :ok
+        boardgame = Boardgame.find(params[:id])
+        render json: boardgame, status: :ok
     end
 
     def update
-        user = User.find(params[:id])
-        user.update!(user_params_update)
-        render json: user, status: :ok
+        boardgame = Boardgame.find(params[:id])
+        boardgame.update!(boardgame_params_update)
+        render json: boardgame, status: :ok
     end
 
     def create
-        user = User.create!(user_params_create)
-        render json: user, status: :created
+        boardgame = Boardgame.create!(boardgame_params)
+        render json: boardgame, status: :created
     end
 
     def destroy
-        user = User.find(params[:id])
-        user.destroy
+        boardgame = Boardgame.find(params[:id])
+        boardgame.destroy
         head :no_content
     end
 
     private
-    def user_params_update
-        params.permit(:username, :favorite_games, :borrowed_games, :games_in_progress)
+    def boardgame_params
+        params.permit(:name, :picture_url, :num_players, :description, :genre, :est_time, :user_id, :can_borrow, :available)
     end
-    def user_params_create
-        params.permit(:username)
-    end
+    
 
 
-end
 
 end
